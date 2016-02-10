@@ -27,7 +27,7 @@ public class AuthorController extends HttpServlet {
 
     private static final String urlPathForAuthorPage = "/authorPage.jsp";
     private static final String authorPageAttributeName = "authors";
-    List<Author> author = new ArrayList<>();
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,17 +40,12 @@ public class AuthorController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         AuthorService as = new AuthorService();
-        if(author.isEmpty()){
-            author = as.retrieveAuthors();
-        }else{
-             author.clear();
-             author = as.retrieveAuthors();
-            }
+        List<Author> author = as.retrieveAuthors();
         request.setAttribute(authorPageAttributeName, author);
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(urlPathForAuthorPage);
         dispatcher.forward(request, response);
+        
 
     }
 
