@@ -80,10 +80,7 @@ public class MySqlDBStrategy implements DBStrategy {
     public void deletedSingleRecordFromTable(String DBName, String tableName, String idName, String id) throws SQLException {
         final String FINAL_SINGLE_RECORD_DELETE_SQL = "DELETE FROM " + tableName + " WHERE " + idName + "=?";
         final PreparedStatement psForSIngleDelete = conn.prepareStatement(FINAL_SINGLE_RECORD_DELETE_SQL);
-        //psForSIngleDelete.setString(1, DBName);
-        //psForSIngleDelete.setString(2, tableName);
-       //psForSIngleDelete.setString(1, tableName);
-        //psForSIngleDelete.setString(2, idName);
+       
         psForSIngleDelete.setString(1, id);
         psForSIngleDelete.executeUpdate();
         System.out.println("Record is Deleted");
